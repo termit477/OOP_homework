@@ -1,16 +1,19 @@
 package units;
 
-import java.util.Random;
-
 public class Bandit extends Attacking_class {
 
     public Bandit(String name) {
-        super(name, new Random().nextInt(100, 200), 5, new Random().nextInt(10, 20));
-    }
- 
-    @Override
-    public String getInfo() {
-        return "Бандит " + name;
+        super(name, 3, 2, 4, 10, 6, 8);
     }
 
+    @Override
+    public String getInfo() {
+        return "Бандит " + name + " (" + "Атака - " + attack + ", Защита - " + defense + ", Урон - " + minDamage + "-"
+                + maxDamage + ", Здоровье - " + hp + ", Скорость - " + speed + ")";
+    }
+
+    @Override
+    public String getInfoForQueue() {
+        return "Бандит " + name + " (" + "Скорость - " + speed  + ", Здоровье - " + hp + ")";
+    }
 }

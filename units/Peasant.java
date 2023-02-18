@@ -1,15 +1,22 @@
 package units;
 
-import java.util.Random;
+public class Peasant extends Attacking_class {
 
-public class Peasant extends BaseHero {
-    
+    int delivery;
+
     public Peasant(String name) {
-        super(name, new Random().nextInt(100, 120), 5);
+        super(name, 1, 1, 1, 1, 3, 1);
+        this.delivery = 1;
     }
 
     @Override
-    public String getInfo(){
-        return "Крестьянин " + name;
+    public String getInfo() {
+        return "Крестьянин " + name + " (" + "Атака - " + attack + ", Защита - " + defense + ", Урон - " + minDamage
+                + "-" + maxDamage + ", Здоровье - " + hp + ", Скорость - " + speed + ", Доставка - " + delivery + ")";
+    }
+
+    @Override
+    public String getInfoForQueue() {
+        return "Крестьянин " + name + " (" + "Скорость - " + speed  + ", Здоровье - " + hp + ")";
     }
 }

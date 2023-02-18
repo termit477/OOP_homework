@@ -1,15 +1,11 @@
 package units;
 
-import java.util.Random;
-
 public abstract class Archer extends Attacking_class {
 
-    protected int shots, maxShots;
+    protected int shots;
 
-    public Archer(String name, int shots, int maxShots) {
-        
-        super(name, new Random().nextInt(100, 130), 5, new Random().nextInt(10, 30));
+    public Archer(String name, int defense, int minDamage, int maxDamage, int hp, int speed, int attack, int shots) {
+        super(name, defense, minDamage, maxDamage, hp, speed, attack);
         this.shots = shots;
-        this.maxShots = maxShots;
     }
 }

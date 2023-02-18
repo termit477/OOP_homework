@@ -2,16 +2,19 @@ package units;
 
 import java.util.Random;
 
-public abstract class BaseHero implements GameInterfase{
+public abstract class BaseHero implements GameInterfase {
 
     protected String name;
-    protected int hp, maxHp, attack, def;
+    protected int defense, minDamage, maxDamage, hp, maxHp, speed;
 
-    public BaseHero(String name, int hp, int def) {
+    public BaseHero(String name, int defense, int minDamage, int maxDamage, int hp, int speed) {
         this.name = name;
+        this.defense = defense;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
         this.hp = hp;
         this.maxHp = hp;
-        this.def = def;
+        this.speed = speed;
     }
 
     public static String getName() {
@@ -22,23 +25,27 @@ public abstract class BaseHero implements GameInterfase{
         return hp;
     }
 
-    public int getAttack() {
-        return attack;
+    public int getSpeed() {
+        return speed;
     }
-
-    public void GetDamage(int damage) {
-        if (this.hp - damage > 0) {
-            this.hp -= damage;
-        }
+    
+    public String getInfoForQueue() {
+        return "";
     }
 
     @Override
     public void step() {
     }
-
+    
     @Override
     public String getInfo() {
         return "null";
+    }
+    
+    public void GetDamage(int damage) {
+        if (this.hp - damage > 0) {
+            this.hp -= damage;
+        }
     }
 
 }
