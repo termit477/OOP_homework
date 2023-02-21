@@ -2,8 +2,8 @@ package units;
 
 public class Sniper extends Archer {
 
-    public Sniper(String name) {
-        super(name, 10, 8, 10, 15, 9, 12, 32);
+    public Sniper(String name, Point pointXY) {
+        super(name, 10, 8, 10, 15, 9, 12, 32, pointXY);
     }
 
     @Override

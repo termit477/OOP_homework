@@ -4,8 +4,8 @@ public class Peasant extends Attacking_class {
 
     int delivery;
 
-    public Peasant(String name) {
-        super(name, 1, 1, 1, 1, 3, 1);
+    public Peasant(String name, Point pointXY) {
+        super(name, 1, 1, 1, 1, 3, 1, pointXY);
         this.delivery = 1;
     }
 

@@ -2,8 +2,8 @@ package units;
 
 public class Magician extends Mag {
 
-    public Magician(String name) {
-        super(name, 12, -5, -5, 30, 9, 1);
+    public Magician(String name, Point pointXY) {
+        super(name, 12, -5, -5, 30, 9, 1, pointXY);
     }
 
     @Override

@@ -2,8 +2,8 @@ package units;
 
 public class Crossbowman extends Archer {
 
-    public Crossbowman(String name) {
-        super(name, 3, 2, 3, 10, 4, 6, 16);
+    public Crossbowman(String name, Point pointXY) {
+        super(name, 3, 2, 3, 10, 4, 6, 16, pointXY);
     }
 
     @Override

@@ -2,8 +2,8 @@ package units;
 
 public class Monk extends Mag {
 
-    public Monk(String name) {
-        super(name, 7, -4, -4, 30, 5, 1);
+    public Monk(String name, Point pointXY) {
+        super(name, 7, -4, -4, 30, 5, 1, pointXY);
     }
 
     @Override

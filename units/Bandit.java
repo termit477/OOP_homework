@@ -2,8 +2,8 @@ package units;
 
 public class Bandit extends Attacking_class {
 
-    public Bandit(String name) {
-        super(name, 3, 2, 4, 10, 6, 8);
+    public Bandit(String name, Point pointXY) {
+        super(name, 3, 2, 4, 10, 6, 8, pointXY);
     }
 
     @Override

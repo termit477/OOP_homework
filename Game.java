@@ -6,23 +6,23 @@ import units.*;
 public class Game {
     public static void main(String[] args) {
 
-        ArrayList<BaseHero> Light = new ArrayList<>();
-        ArrayList<BaseHero> Dark = new ArrayList<>();
-        ArrayList<BaseHero> QueueForAMove = new ArrayList<>();
+        ArrayList<BaseHero> light = new ArrayList<>();
+        ArrayList<BaseHero> dark = new ArrayList<>();
+        ArrayList<BaseHero> queueForAMove = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             switch (new Random().nextInt(4)) {
                 case 0:
-                    Light.add(new Pikeman(Pikeman.getName()));
+                    light.add(new Pikeman(Pikeman.getName(), new Point(1, i + 1)));
                     break;
                 case 1:
-                    Light.add(new Crossbowman(Crossbowman.getName()));
+                    light.add(new Crossbowman(Crossbowman.getName(), new Point(1, i + 1)));
                     break;
                 case 2:
-                    Light.add(new Monk(Monk.getName()));
+                    light.add(new Monk(Monk.getName(), new Point(1, i + 1)));
                     break;
                 case 3:
-                    Light.add(new Peasant(Peasant.getName()));
+                    light.add(new Peasant(Peasant.getName(), new Point(1, i + 1)));
                     break;
                 default:
                     break;
@@ -30,18 +30,19 @@ public class Game {
         }
 
         for (int i = 0; i < 10; i++) {
+
             switch (new Random().nextInt(4)) {
                 case 0:
-                    Dark.add(new Bandit(Bandit.getName()));
+                    dark.add(new Bandit(Bandit.getName(),  new Point(10, i+1)));
                     break;
                 case 1:
-                    Dark.add(new Sniper(Sniper.getName()));
+                    dark.add(new Sniper(Sniper.getName(),  new Point(10, i+1)));
                     break;
                 case 2:
-                    Dark.add(new Magician(Magician.getName()));
+                    dark.add(new Magician(Magician.getName(),  new Point(10, i+1)));
                     break;
                 case 3:
-                    Dark.add(new Peasant(Peasant.getName()));
+                    dark.add(new Peasant(Peasant.getName(),  new Point(10, i+1)));
                     break;
                 default:
                     break;
@@ -49,17 +50,17 @@ public class Game {
         }
 
         System.out.println("___Свет___");
-        Light.forEach(n -> System.out.println(n.getInfo()));
-        System.out.println("--------------------------------------------");
+        light.forEach(n -> System.out.println(n.getInfo()));
+        System.out.println("--------------------------------------------------------------------------");
 
         System.out.println("___Тьма___");
-        Dark.forEach(n -> System.out.println(n.getInfo()));
-        System.out.println("--------------------------------------------");
+        dark.forEach(n -> System.out.println(n.getInfo()));
+        System.out.println("--------------------------------------------------------------------------");
 
-        QueueForAMove.addAll(Light);
-        QueueForAMove.addAll(Dark);
+        queueForAMove.addAll(light);
+        queueForAMove.addAll(dark);
 
-        QueueForAMove.sort(new Comparator<BaseHero>() {
+        queueForAMove.sort(new Comparator<BaseHero>() {
             @Override
             public int compare(BaseHero hero1, BaseHero hero2) {
                 if (hero2.getSpeed() == hero1.getSpeed())
@@ -70,6 +71,10 @@ public class Game {
             }
         });
 
-        QueueForAMove.forEach(n -> System.out.println(n.getInfoForQueue()));
+        System.out.println("___Очередь для хода___");
+        queueForAMove.forEach(n -> n.step(light, dark));
+
+
+
     }
 }

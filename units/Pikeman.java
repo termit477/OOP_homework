@@ -2,8 +2,8 @@ package units;
 
 public class Pikeman extends Attacking_class {
 
-    public Pikeman(String name) {
-        super(name, 5, 1, 3, 10, 4, 4);
+    public Pikeman(String name, Point pointXY) {
+        super(name, 5, 1, 3, 10, 4, 4, pointXY);
     }
 
     @Override
