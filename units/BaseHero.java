@@ -5,19 +5,21 @@ import java.util.Random;
 
 public abstract class BaseHero implements GameInterfase {
 
-    protected String name;
-    protected int defense, minDamage, maxDamage, hp, maxHp, speed;
+    protected String name, state;
+    protected int attack, defense, minDamage, maxDamage, hp, maxHp, speed;
     protected Point pointXY;
 
-    public BaseHero(String name, int defense, int minDamage, int maxDamage, int hp, int speed, Point pointXY) {
+    public BaseHero(String name, int attack, int defense, int minDamage, int maxDamage, int hp, int speed, int pointX, int pointY) {
         this.name = name;
+        this.attack = attack;
         this.defense = defense;
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
         this.hp = hp;
         this.maxHp = hp;
         this.speed = speed;
-        this.pointXY = pointXY;
+        pointXY = new Point(pointX, pointY);
+        state = "Stand";
     }
 
     public static String getName() {
@@ -28,16 +30,8 @@ public abstract class BaseHero implements GameInterfase {
         return hp;
     }
 
-    public void setHP(int hp){
-        this.hp -= hp;
-    }
-
     public int getSpeed() {
         return speed;
-    }
-
-    public String getInfoForQueue() {
-        return "";
     }
 
     @Override
@@ -49,14 +43,25 @@ public abstract class BaseHero implements GameInterfase {
         return "null";
     }
 
-    public void getDamage(int damage) {
-        if (this.hp - damage > 0) {
-            this.hp -= damage;
+    public void getDamage(float damage) {
+        this.hp -= damage;
+        if (hp <= 0) {
+            hp = 0;
+            state = "Die";
         }
+        if (hp > maxHp)
+            hp = maxHp;
     }
 
-    public void giveDamage(BaseHero target){
-        int damage = (this.maxDamage + this.minDamage)/2;
-        target.setHP(damage - target.defense);
+    protected int findTheNearest(ArrayList<BaseHero> team) {
+        double min = Double.MAX_VALUE;
+        int index = 0;
+        for (int i = 0; i < team.size(); i++) {
+            if (min > pointXY.getDistance(team.get(i).pointXY)) {
+                index = i;
+                min = pointXY.getDistance(team.get(i).pointXY);
+            }
+        }
+        return index;
     }
 }

@@ -8,7 +8,7 @@ public class Point {
         this.y = y;
     }
 
-    public double distance(Point targetCoordinate) {
-        return Math.sqrt(Math.pow(this.x - targetCoordinate.x, 2) + Math.pow(this.y - targetCoordinate.y, 2)); 
+    public double getDistance(Point opponent) {
+        return Math.sqrt(Math.pow(this.x - opponent.x, 2) + Math.pow(this.y - opponent.y, 2)); 
     }
 }

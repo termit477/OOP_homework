@@ -2,19 +2,14 @@ package units;
 
 public class Sniper extends Archer {
 
-    public Sniper(String name, Point pointXY) {
-        super(name, 10, 8, 10, 15, 9, 12, 32, pointXY);
+    public Sniper(String name, int pointX, int pointY) {
+        super(name, 12, 10, 8, 10, 15, 9, 32, pointX, pointY);
     }
 
     @Override
     public String getInfo() {
-        return "Снайпер " + name + " (" + "Атака - " + attack + ", Защита - " + defense + ", Дальность выстрела - "
-                + shots + ", Урон - " + minDamage + "-" + maxDamage + ", Здоровье - " + hp + ", Скорость - " + speed
-                + ")";
-    }
-
-    @Override
-    public String getInfoForQueue() {
-        return "Снайпер " + name + " (" + "Скорость - " + speed  + ", Здоровье - " + hp + ")";
+        return String.format("%7S %10s %13s %7s %3d %10s %3d %7s %2d %2d %10s %3d %10s %3d %10s %3d",
+        state, "Снайпер", name, "Атака:", attack, "Защита:", defense, "Урон:", minDamage, maxDamage, "Здоровье:", hp,
+        "Скорость:", speed, "Снарядов:", ammo);
     }
 }

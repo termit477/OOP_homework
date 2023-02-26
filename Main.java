@@ -1,0 +1,96 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Random;
+import java.util.Scanner;
+
+import units.*;
+
+public class Main {
+
+    static final int UNITS = 10;
+
+    public static void main(String[] args) {
+
+        Scanner user_input = new Scanner(System.in);
+
+        ArrayList<BaseHero> light = new ArrayList<>();
+        ArrayList<BaseHero> dark = new ArrayList<>();
+        ArrayList<BaseHero> allTeam = new ArrayList<>();
+
+        createTeam(light, 0, 1);
+        createTeam(dark, 3, 10);
+
+        allTeam.addAll(light);
+        allTeam.addAll(dark);
+
+        sortTeam(allTeam);
+
+        System.out.println("___Добро___");
+        showTheTeam(light);
+
+        System.out.println("___Зло___");
+        showTheTeam(dark);
+
+        System.out.println("___Бойня___");
+        String stop = "";
+        while (stop.equals("")) {
+            for (BaseHero hero : allTeam) {
+                if (light.contains(hero))
+                    hero.step(light, dark);
+                else
+                    hero.step(dark, light);
+            }
+            showTheTeam(allTeam);
+            stop = user_input.nextLine();
+
+        }
+    }
+
+    static void showTheTeam(ArrayList<BaseHero> team) {
+        team.forEach(n -> System.out.println(n.getInfo()));
+        System.out.println("----------------------------------------------------------------------------------------");
+    }
+
+    static void sortTeam(ArrayList<BaseHero> team) {
+        team.sort(new Comparator<BaseHero>() {
+            @Override
+            public int compare(BaseHero hero1, BaseHero hero2) {
+                if (hero2.getSpeed() == hero1.getSpeed())
+                    return hero2.getHp() - hero1.getHp();
+                else {
+                    return hero2.getSpeed() - hero1.getSpeed();
+                }
+            }
+        });
+    }
+
+    static void createTeam(ArrayList<BaseHero> team, int offset, int pointX) {
+        for (int i = 1; i <= UNITS; i++) {
+            switch (new Random().nextInt(4) + offset) {
+                case 0:
+                    team.add(new Pikeman(Pikeman.getName(), pointX, i));
+                    break;
+                case 1:
+                    team.add(new Crossbowman(Crossbowman.getName(), pointX, i));
+                    break;
+                case 2:
+                    team.add(new Monk(Monk.getName(), pointX, i));
+                    break;
+                case 3:
+                    team.add(new Peasant(Peasant.getName(), pointX, i));
+                    break;
+                case 4:
+                    team.add(new Bandit(Bandit.getName(), pointX, i));
+                    break;
+                case 5:
+                    team.add(new Sniper(Sniper.getName(), pointX, i));
+                    break;
+                case 6:
+                    team.add(new Magician(Magician.getName(), pointX, i));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+}
