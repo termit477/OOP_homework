@@ -14,8 +14,13 @@ public class Peasant extends BaseHero {
     @Override
     public String getInfo() {
         return String.format("%7S %10s %13s %7s %3d %10s %3d %7s %2d %2d %10s %3d %10s %3d",
-        state, "Крестьянин", name, "Атака:", attack, "Защита:", defense, "Урон:", minDamage, maxDamage, "Здоровье:", hp,
-        "Скорость:", speed);
+                state, "Фермер", name, "Атака:", attack, "Защита:", defense, "Урон:", minDamage, maxDamage, "Здоровье:",
+                hp, "Скорость:", speed);
+    }
+
+    @Override
+    public String getClassHero() {
+        return "Фермер";
     }
 
     @Override

@@ -8,7 +8,23 @@ public class Point {
         this.y = y;
     }
 
-    public double getDistance(Point opponent) {
-        return Math.sqrt(Math.pow(this.x - opponent.x, 2) + Math.pow(this.y - opponent.y, 2)); 
+    protected int getPointX() {
+        return x;
+    }
+
+    protected int getPointY() {
+        return y;
+    }
+
+    protected boolean isLeft(Point opponent) {
+        return x < opponent.x;
+    }
+
+    protected double getDistance(Point opponent) {
+        return Math.sqrt(Math.pow(this.x - opponent.x, 2) + Math.pow(this.y - opponent.y, 2));
+    }
+
+    public Point chooseWay(Point opponent) {
+        return new Point(x - opponent.x, y - opponent.y);
     }
 }

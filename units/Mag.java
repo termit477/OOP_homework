@@ -13,6 +13,16 @@ public class Mag extends BaseHero {
         this.mana = mana;
     }
 
+    public String toString() {
+        return name +
+                " H:" + Math.round(hp) +
+                " D:" + defense +
+                " A:" + attack +
+                " Dmg:" + Math.round(Math.abs((minDamage + maxDamage) / 2)) +
+                " " + state +
+                " Mana:" + mana;
+    }
+
     @Override
     public void step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
         if (state.equals("Die") || mana <= 0)
@@ -20,9 +30,6 @@ public class Mag extends BaseHero {
         BaseHero victim = findTheMostWounded(ours);
         victim.getDamage(minDamage);
         mana--;
-
-        if (mana <= 0)
-            mana += 5;
     }
 
     protected BaseHero findTheMostWounded(ArrayList<BaseHero> ours) {
