@@ -5,24 +5,24 @@ import java.util.Scanner;
 
 import units.*;
 
-public class Main {
+public class main {
 
     static final int UNITS = 10;
+    public static ArrayList<BaseHero> light = new ArrayList<>();
+    public static ArrayList<BaseHero> dark = new ArrayList<>();
+    public static ArrayList<BaseHero> allTeam = new ArrayList<>();
 
     public static void main(String[] args) {
 
         Scanner user_input = new Scanner(System.in);
-
-        ArrayList<BaseHero> light = new ArrayList<>();
-        ArrayList<BaseHero> dark = new ArrayList<>();
-        ArrayList<BaseHero> allTeam = new ArrayList<>();
+        System.out.print("Нажмите 'Enter' для старта игры.");
+        user_input.nextLine();
 
         createTeam(light, 0, 1);
         createTeam(dark, 3, 10);
 
         allTeam.addAll(light);
         allTeam.addAll(dark);
-
         sortTeam(allTeam);
 
         System.out.println("___Добро___");
@@ -32,36 +32,37 @@ public class Main {
         showTheTeam(dark);
 
         System.out.println("___Бойня___");
-        String stop = "";
-        while (stop.equals("")) {
+        // boolean game = true;
+        // int countLight = 0;
+        // int countDark = 0;
+        while (true) {
+            View.view();
+            user_input.nextLine();
+            // countLight = 0;
+            // countDark = 0;
+            
             for (BaseHero hero : allTeam) {
-                if (light.contains(hero))
+                if (light.contains(hero)) {
                     hero.step(light, dark);
-                else
+                    // countLight++;
+                } else {
                     hero.step(dark, light);
+                    // countDark++;
+                }
             }
-            showTheTeam(allTeam);
-            stop = user_input.nextLine();
-
+            // if (countLight == UNITS || countDark == UNITS) {
+            //     game = false;
+            // }
         }
+        // if (countLight == UNITS)
+        //     System.out.println("Добро победило");
+        // else
+        //     System.out.println("Зло победило");
     }
 
     static void showTheTeam(ArrayList<BaseHero> team) {
         team.forEach(n -> System.out.println(n.getInfo()));
         System.out.println("----------------------------------------------------------------------------------------");
-    }
-
-    static void sortTeam(ArrayList<BaseHero> team) {
-        team.sort(new Comparator<BaseHero>() {
-            @Override
-            public int compare(BaseHero hero1, BaseHero hero2) {
-                if (hero2.getSpeed() == hero1.getSpeed())
-                    return hero2.getHp() - hero1.getHp();
-                else {
-                    return hero2.getSpeed() - hero1.getSpeed();
-                }
-            }
-        });
     }
 
     static void createTeam(ArrayList<BaseHero> team, int offset, int pointX) {
@@ -93,4 +94,18 @@ public class Main {
             }
         }
     }
+
+    static void sortTeam(ArrayList<BaseHero> team) {
+        team.sort(new Comparator<BaseHero>() {
+            @Override
+            public int compare(BaseHero hero1, BaseHero hero2) {
+                if (hero2.getSpeed() == hero1.getSpeed())
+                    return hero2.getHp() - hero1.getHp();
+                else {
+                    return hero2.getSpeed() - hero1.getSpeed();
+                }
+            }
+        });
+    }
+
 }
