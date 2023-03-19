@@ -35,10 +35,7 @@ public class Peasant extends BaseHero {
 
     @Override
     public boolean step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
-        if (!state.equals("Die")){
-            state = "Stand";
-            return true;
-        }
-        return false;
+        if (state.equals("Die")) return false;
+        else return true;
     }
 }

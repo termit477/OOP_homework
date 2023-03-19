@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Pikeman extends BaseHero {
 
     public Pikeman(String name, int pointX, int pointY) {
-        super(name, 4, 5, 1, 3, 50, 4, pointX, pointY);
+        super(name, 4, 7, 2, 4, 50, 4, pointX, pointY);
     }
 
     @Override
@@ -26,8 +26,13 @@ public class Pikeman extends BaseHero {
             return false;
         BaseHero victim = foreign.get(findTheNearest(foreign));
         if (victim.pointXY.getDistance(pointXY) < 2) {
-            float damage = (victim.defense - attack) > 0 ? minDamage
-                    : (victim.defense - attack) < 0 ? maxDamage : (minDamage + maxDamage) / 2;
+            float damage = 0;
+            if (victim.defense - attack > 0)
+                damage = minDamage;
+            else if (victim.defense - attack < 0)
+                damage = maxDamage;
+            else
+                damage = (minDamage + maxDamage) / 2;
             victim.getDamage(damage);
         } else {
             Point tempvc = pointXY.chooseWay(victim.pointXY);

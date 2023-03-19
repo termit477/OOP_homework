@@ -32,7 +32,6 @@ public class main {
         showTheTeam(dark);
 
         System.out.println("___Бойня___");
-        // boolean game = true;
         int countLight = 0;
         int countDark = 0;
         while (true) {
@@ -43,23 +42,19 @@ public class main {
 
             for (BaseHero hero : allTeam) {
                 if (light.contains(hero)) {
-                    if (hero.step(light, dark) == true)
-                        hero.step(light, dark);
-                    else
+                    if (hero.step(light, dark) == false)
                         countLight++;
                 } else {
-                    if (hero.step(dark, light) == true)
-                        hero.step(dark, light);
-                    else
+                    if (hero.step(dark, light) == false)
                         countDark++;
                 }
             }
             if (countLight == UNITS || countDark == UNITS) {
-                // game = false;
                 break;
             }
         }
 
+        View.view();
         if (countLight == UNITS)
             System.out.println("Зло победило");
         else

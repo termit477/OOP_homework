@@ -64,7 +64,7 @@ public class View {
         System.out.print(top10 + "    ");
         System.out.print("Green side");
         System.out.print(" ".repeat(l[0] - 9));
-        System.out.println(":\tBlue side");
+        System.out.println(": Blue side");
         for (int i = 1; i < 11; i++) {
             System.out.print(getChar(1, i));
         }

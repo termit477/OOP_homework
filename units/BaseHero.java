@@ -15,7 +15,7 @@ public abstract class BaseHero implements GameInterfase {
         this.attack = attack;
         this.defense = defense;
         this.minDamage = minDamage;
-        this.minDamage = maxDamage;
+        this.maxDamage = maxDamage;
         this.hp = hp;
         this.maxHp = hp;
         this.speed = speed;
@@ -39,11 +39,6 @@ public abstract class BaseHero implements GameInterfase {
     public int getSpeed() {return speed;}
 
     public String getClassHero() {return "null";}
-
-    @Override
-    public boolean step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2) {
-        return true;
-    }
 
     @Override
     public String getInfo() {return "null";}

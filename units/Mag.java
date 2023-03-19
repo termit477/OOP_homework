@@ -29,11 +29,13 @@ public class Mag extends BaseHero {
             
     @Override
     public boolean step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
-        if (state.equals("Die") || mana <= 0)
+        if (state.equals("Die"))
             return false;
-        BaseHero victim = findTheMostWounded(ours);
-        victim.getDamage(minDamage);
-        mana--;
+        if (mana > 0) {
+            BaseHero victim = findTheMostWounded(ours);
+            victim.getDamage(minDamage);
+            mana--;
+        }
         return true;
     }
 

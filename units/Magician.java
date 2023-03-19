@@ -3,7 +3,7 @@ package units;
 public class Magician extends Mag {
 
     public Magician(String name, int pointX, int pointY) {
-        super(name, 17, 12, -3, -3, 30, 9, 10, pointX, pointY);
+        super(name, 17, 12, -2, -2, 30, 9, 10, pointX, pointY);
     }
 
     @Override

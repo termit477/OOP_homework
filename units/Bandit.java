@@ -5,19 +5,19 @@ import java.util.ArrayList;
 public class Bandit extends BaseHero {
 
     public Bandit(String name, int pointX, int pointY) {
-        super(name, 8, 3, 2, 4, 50, 6, pointX, pointY);
+        super(name, 8, 6, 2, 3, 50, 6, pointX, pointY);
     }
 
     @Override
     public String getInfo() {
-        return String.format("%7S %10s %13s %7s %3d %10s %3d %7s %2d %2d %10s %3d %10s %3d",
-                state, "Разбойник", name, "Атака:", attack, "Защита:", defense, "Урон:", minDamage, maxDamage,
+        return String.format("%7s %10s %13s %7s %3d %10s %3d %7s %2d %2d %10s %3d %10s %3d",
+                state, "Бандит", name, "Атака:", attack, "Защита:", defense, "Урон:", minDamage, maxDamage,
                 "Здоровье:", hp, "Скорость:", speed);
     }
 
     @Override
     public String getClassHero() {
-        return "Разбойник";
+        return "Бандит";
     }
 
     @Override
@@ -26,8 +26,13 @@ public class Bandit extends BaseHero {
             return false;
         BaseHero victim = foreign.get(findTheNearest(foreign));
         if (victim.pointXY.getDistance(pointXY) < 2) {
-            float damage = (victim.defense - attack) > 0 ? minDamage
-                    : (victim.defense - attack) < 0 ? maxDamage : (minDamage + maxDamage) / 2;
+            float damage = 0;
+            if (victim.defense - attack > 0)
+                damage = minDamage;
+            else if (victim.defense - attack < 0)
+                damage = maxDamage;
+            else
+                damage = (minDamage + maxDamage) / 2;
             victim.getDamage(damage);
         } else {
             Point tempvc = pointXY.chooseWay(victim.pointXY);

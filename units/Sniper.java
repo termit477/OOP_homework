@@ -3,7 +3,7 @@ package units;
 public class Sniper extends Shooter {
 
     public Sniper(String name, int pointX, int pointY) {
-        super(name, 12, 10, 8, 10, 30, 9, 32, pointX, pointY);
+        super(name, 12, 5, 5, 7, 30, 9, 20, pointX, pointY);
     }
 
     @Override

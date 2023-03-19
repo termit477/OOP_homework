@@ -8,13 +8,9 @@ public class Point {
         this.y = y;
     }
 
-    protected int getPointX() {
-        return x;
-    }
+    protected int getPointX() {return x;}
 
-    protected int getPointY() {
-        return y;
-    }
+    protected int getPointY() {return y;}
 
     protected boolean isLeft(Point opponent) {
         return x < opponent.x;
