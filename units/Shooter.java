@@ -14,19 +14,21 @@ public abstract class Shooter extends BaseHero {
 
     @Override
     public String toString() {
-        return name +
-                " H:" + Math.round(hp) +
-                " D:" + defense +
-                " A:" + attack +
+        return state + " " +
+                getClassHero() + " " +
+                name +
+                " Hp:" + Math.round(hp) +
+                " Def:" + defense +
+                " Att:" + attack +
                 " Dmg:" + Math.round(Math.abs((minDamage + maxDamage) / 2)) +
-                " " + state +
+                " Coords:" + pointXY.x + "." + pointXY.y +
                 " Ammo: " + ammo;
     }
 
     @Override
-    public void step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
+    public boolean step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
         if (state.equals("Die") || ammo == 0)
-            return;
+            return false;
         BaseHero victim = foreign.get(findTheNearest(foreign));
         float damage = (victim.defense - attack) > 0 ? minDamage
                 : (victim.defense - attack) < 0 ? maxDamage : (minDamage + maxDamage) / 2;
@@ -34,9 +36,11 @@ public abstract class Shooter extends BaseHero {
         for (BaseHero hero : ours) {
             if (hero.getClassHero().equals("Фермер") && hero.state.equals("Stand")) {
                 hero.state = "Busy";
+                ammo++;
                 break;
             }
         }
         ammo--;
+        return true;
     }
 }

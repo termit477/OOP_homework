@@ -24,8 +24,21 @@ public class Peasant extends BaseHero {
     }
 
     @Override
-    public void step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
-        if (!state.equals("Die"))
+    public String toString() {
+        return state + " " +
+                getClassHero() + " " +
+                name +
+                " Hp:" + Math.round(hp) +
+                " Def:" + defense +
+                " Coords:" + pointXY.x + "." + pointXY.y;
+    }
+
+    @Override
+    public boolean step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
+        if (!state.equals("Die")){
             state = "Stand";
+            return true;
+        }
+        return false;
     }
 }

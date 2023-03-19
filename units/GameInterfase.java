@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface GameInterfase {
     
-    void step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2);
+    boolean step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2);
     
     String getInfo();
 }

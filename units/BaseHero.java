@@ -24,41 +24,36 @@ public abstract class BaseHero implements GameInterfase {
     }
 
     public String toString() {
-        return name +
-                " H:" + Math.round(hp) +
-                " D:" + defense +
-                " A:" + attack +
+        return state + " " +
+                getClassHero() + " " +
+                name +
+                " Hp:" + Math.round(hp) +
+                " Def:" + defense +
+                " Att:" + attack +
                 " Dmg:" + Math.round(Math.abs((minDamage + maxDamage) / 2)) +
-                " " + state;
+                " Coords:" + pointXY.x + "." + pointXY.y;
     }
+
+    public int getHp() {return hp;}
+
+    public int getSpeed() {return speed;}
+
+    public String getClassHero() {return "null";}
+
+    @Override
+    public boolean step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2) {
+        return true;
+    }
+
+    @Override
+    public String getInfo() {return "null";}
 
     public static String getName() {
         return String.valueOf(Names.values()[new Random().nextInt(0, Names.values().length)]);
     }
 
-    public int getHp() {
-        return hp;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
     public int[] getCoords() {
         return new int[] { pointXY.getPointX(), pointXY.getPointY() };
-    }
-
-    @Override
-    public void step(ArrayList<BaseHero> team1, ArrayList<BaseHero> team2) {
-    }
-
-    @Override
-    public String getInfo() {
-        return "null";
-    }
-
-    public String getClassHero() {
-        return "null";
     }
 
     public void getDamage(float damage) {

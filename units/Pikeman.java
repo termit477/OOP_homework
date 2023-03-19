@@ -21,9 +21,9 @@ public class Pikeman extends BaseHero {
     }
 
     @Override
-    public void step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
+    public boolean step(ArrayList<BaseHero> ours, ArrayList<BaseHero> foreign) {
         if (state.equals("Die"))
-            return;
+            return false;
         BaseHero victim = foreign.get(findTheNearest(foreign));
         if (victim.pointXY.getDistance(pointXY) < 2) {
             float damage = (victim.defense - attack) > 0 ? minDamage
@@ -45,5 +45,6 @@ public class Pikeman extends BaseHero {
                 }
             }
         }
+        return true;
     }
 }

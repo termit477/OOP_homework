@@ -33,31 +33,37 @@ public class main {
 
         System.out.println("___Бойня___");
         // boolean game = true;
-        // int countLight = 0;
-        // int countDark = 0;
+        int countLight = 0;
+        int countDark = 0;
         while (true) {
             View.view();
             user_input.nextLine();
-            // countLight = 0;
-            // countDark = 0;
-            
+            countLight = 0;
+            countDark = 0;
+
             for (BaseHero hero : allTeam) {
                 if (light.contains(hero)) {
-                    hero.step(light, dark);
-                    // countLight++;
+                    if (hero.step(light, dark) == true)
+                        hero.step(light, dark);
+                    else
+                        countLight++;
                 } else {
-                    hero.step(dark, light);
-                    // countDark++;
+                    if (hero.step(dark, light) == true)
+                        hero.step(dark, light);
+                    else
+                        countDark++;
                 }
             }
-            // if (countLight == UNITS || countDark == UNITS) {
-            //     game = false;
-            // }
+            if (countLight == UNITS || countDark == UNITS) {
+                // game = false;
+                break;
+            }
         }
-        // if (countLight == UNITS)
-        //     System.out.println("Добро победило");
-        // else
-        //     System.out.println("Зло победило");
+
+        if (countLight == UNITS)
+            System.out.println("Зло победило");
+        else
+            System.out.println("Добро победило");
     }
 
     static void showTheTeam(ArrayList<BaseHero> team) {
